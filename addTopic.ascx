@@ -3,43 +3,27 @@
 
      <div class="container mt-5 text-right">
         <h2>إضافة موضوع جديد</h2>
-        <form id="newTopicForm">
+        <form id="newTopicForm" method="post" action="f.aspx?mode=post_topic">
             <div class="form-group">
                 <label for="title">عنوان الموضوع:</label>
-                <input type="text" class="form-control" id="title" placeholder="أدخل عنوان الموضوع" required>
+                <input type="text" class="form-control" id="title" name="title" placeholder="أدخل عنوان الموضوع" required>
             </div>
             <div class="form-group">
                 <label for="content">محتوى الموضوع:</label>
-                <textarea class="form-control" id="content" rows="5" placeholder="أدخل محتوى الموضوع" required></textarea>
+                <textarea class="form-control" id="content" name="content" rows="5" placeholder="أدخل محتوى الموضوع" required></textarea>
             </div>
             <div class="form-group">
                 <label for="type">نوع الموضوع:</label>
-                <select class="form-control" id="type" required>
-                    <option value="عادي">عادي</option>
-                    <option value="مقفل">مقفل</option>
-                    <option value="مخفي">مخفي</option>
+                <select class="form-control" id="type"name="status" required>
+                    <option value="1">عادي</option>
+                    <option value="0">مقفل</option>
+                    <option value="2">مخفي</option>
                 </select>
             </div>
+            <input type="hidden" name="new" value="add_new_topic"/>
             <button type="submit" class="btn btn-primary">إضافة الموضوع</button>
         </form>
         <div id="result" class="mt-3"></div>
     </div>
 
-    <script>
-        $(document).ready(function () {
-            $('#newTopicForm').on('submit', function (event) {
-                event.preventDefault();
-                var title = $('#title').val();
-                var content = $('#content').val();
-                var type = $('#type').val();
-
-                var resultHtml = `
-                    <h3>تمت إضافة الموضوع بنجاح!</h3>
-                    <p><strong>عنوان الموضوع:</strong> ${title}</p>
-                    <p><strong>محتوى الموضوع:</strong> ${content}</p>
-                    <p><strong>نوع الموضوع:</strong> ${type}</p>
-                `;
-                $('#result').html(resultHtml);
-            });
-        });
-    </script>
+    
